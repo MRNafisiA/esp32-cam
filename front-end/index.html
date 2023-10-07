@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<img style="width: 100%;" id="img" alt="hello">
+<script>
+    const ws = new WebSocket('ws://localhost:9000'); // Replace with your server address and port
+
+    ws.onmessage = (event) => {
+        const message = event.data;
+        document.getElementById('img').src = URL.createObjectURL(message);
+
+// Append the image element to the HTML body or another container element
+        console.log('Received message:', message);
+        // Handle the received message as needed
+    };
+
+    ws.onclose = () => {
+        console.log('WebSocket connection closed');
+    };
+</script>
+</body>
+</html>
